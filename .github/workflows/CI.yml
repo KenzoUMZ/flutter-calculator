@@ -14,10 +14,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: dart-lang/setup-dart@v1
+       uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '2.8.0'
+          channel: 'stable'
 
-      - name: Install dependencies
-        run: dart pub get
+      - run: flutter --version
 
-      - name: Hello world
-        run: dart bin/hello_world.dart
+      - run: flutter doctor
+
+      - run: flutter pub get
+
+      - run: flutter test
