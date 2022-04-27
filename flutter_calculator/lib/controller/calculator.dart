@@ -1,0 +1,3 @@
+class Calculator {
+  // Operations methods
+}
