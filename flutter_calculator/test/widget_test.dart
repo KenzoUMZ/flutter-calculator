@@ -15,6 +15,13 @@ import 'dart:developer';
 void main() {
   double num1 = 10;
   double num2 = 20;
+
+  test('exist()', () async {
+    Calculator calc = Calculator(num1, num2);
+
+    expect(calc.exist(), true);
+  });
+
   test('sum()', () async {
     Calculator calc = Calculator(num1, num2);
     double result = calc.sum();
