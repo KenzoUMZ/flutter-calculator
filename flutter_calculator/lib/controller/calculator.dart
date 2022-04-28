@@ -24,14 +24,17 @@ class Calculator {
     num2 = double.parse(nums[1]);
   }
 
-  void calculate() {
+  double calculate() {
     if (operation == '+')
-      this.sum();
+      return this.sum();
     else if (operation == '-')
-      this.sub();
+      return this.sub();
     else if (operation == '*')
-      this.mul();
-    else if (operation == '/') this.div();
+      return this.mul();
+    else if (operation == '/')
+      return this.div();
+    else
+      return 0;
   }
 
   double sum() {

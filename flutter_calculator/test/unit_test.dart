@@ -19,7 +19,6 @@ void main() {
 
   test('exist()', () async {
     Calculator calc = Calculator(text);
-    calc.calculate();
     expect(calc.exist(), true);
   });
 
