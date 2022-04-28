@@ -29,8 +29,10 @@ flutter test
 
 | **Dependencies** | **Version**  |
 |------------------|--------------|
-| Flutter SDK      | 2.16.2       |
+| Flutter SDK      | >=2.16.2 <3.0.0  |
 | flutter_test     | built in lib |
+|cupertino_icons   | ^1.0.2       |
+| google_fonts     | ^2.3.2      |
 
 ## Autores
 
