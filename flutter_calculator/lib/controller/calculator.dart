@@ -9,7 +9,6 @@ class Calculator {
     text = text;
 
     // definir operação
-    String operation = '';
     if (text.indexOf('+') != -1)
       operation = '+';
     else if (text.indexOf('-') != -1)
@@ -26,15 +25,22 @@ class Calculator {
 
   double calculate() {
     if (operation == '+')
-      return this.sum();
+      return sum();
     else if (operation == '-')
-      return this.sub();
+      return sub();
     else if (operation == '*')
-      return this.mul();
+      return mul();
     else if (operation == '/')
-      return this.div();
+      return div();
     else
       return 0;
+  }
+
+  void showValues() {
+    print('num1:' + num1.toString());
+    print('num2:' + num2.toString());
+    print('operation:' + operation);
+    print('text:' + text);
   }
 
   double sum() {
