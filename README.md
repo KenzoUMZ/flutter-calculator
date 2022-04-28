@@ -18,6 +18,13 @@ flutter pub get
 ```bash
 flutter run
 ```
+
+## Testes
+### 1. Rodando os testes
+```bash
+flutter test
+```
+
 ## Dependências
 
 | **Dependencies** | **Version**  |
