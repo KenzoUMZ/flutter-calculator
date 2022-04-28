@@ -17,39 +17,39 @@ void main() {
   double num2 = 20.0;
 
   test('exist()', () async {
-    String text = num1.toString() + '+' + num2.toString();
-    print(text);
-    Calculator calc = Calculator(text);
+    Calculator calc = Calculator();
+
+    calc.text = num1.toString() + '+' + num2.toString();
     expect(calc.exist(), true);
   });
 
   test('sum()', () async {
-    String text = num1.toString() + '+' + num2.toString();
-    Calculator calc = Calculator(text);
+    Calculator calc = Calculator();
+    calc.text = num1.toString() + '+' + num2.toString();
     double result = calc.calculate();
 
     expect(result, num1 + num2);
   });
 
   test('sub()', () async {
-    String text = num1.toString() + '-' + num2.toString();
-    Calculator calc = Calculator(text);
+    Calculator calc = Calculator();
+    calc.text = num1.toString() + '-' + num2.toString();
     double result = calc.calculate();
 
     expect(result, num1 - num2);
   });
 
   test('div()', () async {
-    String text = num1.toString() + '/' + num2.toString();
-    Calculator calc = Calculator(text);
+    Calculator calc = Calculator();
+    calc.text = num1.toString() + '/' + num2.toString();
     double result = calc.calculate();
-    print(num1 / num2);
+
     expect(result, num1 / num2);
   });
 
   test('mul()', () async {
-    String text = num1.toString() + '*' + num2.toString();
-    Calculator calc = Calculator(text);
+    Calculator calc = Calculator();
+    calc.text = num1.toString() + '*' + num2.toString();
     double result = calc.calculate();
 
     expect(result, num1 * num2);

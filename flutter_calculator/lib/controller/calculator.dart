@@ -1,11 +1,11 @@
 class Calculator {
-  String text;
+  String text = '';
   double num1 = 0;
   double num2 = 0;
   String operation = '';
   // Operations methods
 
-  Calculator(this.text) {
+  double calculate() {
     text = text;
 
     // definir operação
@@ -21,9 +21,7 @@ class Calculator {
 
     num1 = double.parse(nums[0]);
     num2 = double.parse(nums[1]);
-  }
 
-  double calculate() {
     if (operation == '+')
       return sum();
     else if (operation == '-')
