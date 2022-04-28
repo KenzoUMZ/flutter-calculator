@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [ CI ]
+    branches: [ main ]
 
 defaults:
   run:
@@ -12,15 +12,12 @@ jobs:
   Build:
     runs-on: ubuntu-latest
     steps:
+
       - uses: actions/checkout@v2
 
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-
-      - run: flutter --version
-
-      - run: flutter doctor
 
       - run: flutter pub get
 
