@@ -23,4 +23,8 @@ class Calculator {
   double mul() {
     return num1 * num2;
   }
+
+  bool exist() {
+    return true;
+  }
 }
