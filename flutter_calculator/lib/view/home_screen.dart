@@ -301,8 +301,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: SizedBox(
                             width: 80,
                             child: ElevatedButton(
-                              onPressed: () => {_changeText('x')},
-                              child: Text('x'),
+                              onPressed: () => {_changeText('*')},
+                              child: Text('X'),
                               style: ButtonStyle(
                                   backgroundColor: MaterialStateProperty.all(
                                       Colors.purpleAccent),
@@ -317,7 +317,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: SizedBox(
                             width: 80,
                             child: ElevatedButton(
-                              onPressed: () => {_changeText('-')},
+                              onPressed: () => {_changeText('/')},
                               child: Text('/'),
                               style: ButtonStyle(
                                   backgroundColor: MaterialStateProperty.all(
