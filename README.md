@@ -14,15 +14,20 @@ git clone https://github.com/KenzoUMZ/flutter-calculator
 flutter pub get
 ```
 
-## Dependencies
+### 3. Rodar
+```bash
+flutter run
+```
+## Dependências
+
 | **Dependencies** | **Version**  |
 |------------------|--------------|
 | Flutter SDK      | 2.16.2       |
 | flutter_test     | built in lib |
 
-## Authors
+## Autores
 
 | **Nome**        |
 |-----------------|
-| [Rubens Cividati](github.com/cividati) |
+| [Rubens Cividati](https://github.com/cividati) |
 | [Samuel Kenzo](https://github.com/KenzoUMZ)    |
