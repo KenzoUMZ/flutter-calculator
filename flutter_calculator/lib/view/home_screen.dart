@@ -224,41 +224,45 @@ class _HomeScreenState extends State<HomeScreen> {
                       )),
                 ],
               ),
-              Row(children:[Container(
-                  padding: const EdgeInsets.only(top: 10, right: 10),
-                  child: SizedBox(
-                      height: 60,
-                      width: 110,
-                      child: ElevatedButton(
-                        onPressed: () => {_cleanDisplay()},
-                        child: Text(
-                          '0',
-                          style: keybStyle,
-                        ),
-                        style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all(buttonColor),
-                            shape: MaterialStateProperty.all<
-                                RoundedRectangleBorder>(RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18.0),
-                            ))),
-                      ))), Container(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: SizedBox(
-                            height: 60,
-                            width: 70,
-                            child: ElevatedButton(
-                              onPressed: () => {_changeText('.')},
-                              child: Text(','),
-                              style: ButtonStyle(
-                                  backgroundColor: MaterialStateProperty.all(
-                                      buttonColor),
-                                  shape: MaterialStateProperty.all<
-                                          RoundedRectangleBorder>(
-                                      RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(18.0),
-                                  ))),
-                            )))])
+              Row(children: [
+                Container(
+                    padding: const EdgeInsets.only(top: 10, right: 10),
+                    child: SizedBox(
+                        height: 60,
+                        width: 110,
+                        child: ElevatedButton(
+                          onPressed: () => {_changeText('0')},
+                          child: Text(
+                            '0',
+                            style: keybStyle,
+                          ),
+                          style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all(buttonColor),
+                              shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18.0),
+                              ))),
+                        ))),
+                Container(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: SizedBox(
+                        height: 60,
+                        width: 70,
+                        child: ElevatedButton(
+                          onPressed: () => {_changeText('.')},
+                          child: Text(','),
+                          style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all(buttonColor),
+                              shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18.0),
+                              ))),
+                        )))
+              ])
             ]),
             Container(
                 padding: const EdgeInsets.only(left: 20, top: 10, right: 10),
@@ -333,8 +337,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: ElevatedButton(
                           onPressed: () => {
                             calculator.text = _operation,
-                            print(calculator.text),
-                            print(calculator.calculate()),
                             _changeResult(calculator.calculate().toString()),
                           },
                           child: Text('='),
