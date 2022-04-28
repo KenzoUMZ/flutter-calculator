@@ -1,11 +1,37 @@
 class Calculator {
-  double num1;
-  double num2;
+  String text;
+  double num1 = 0;
+  double num2 = 0;
+  String operation = '';
   // Operations methods
 
-  Calculator(this.num1, this.num2) {
-    num1 = num1;
-    num2 = num2;
+  Calculator(this.text) {
+    text = text;
+
+    // definir operação
+    String operation = '';
+    if (text.indexOf('+') != -1)
+      operation = '+';
+    else if (text.indexOf('-') != -1)
+      operation = '-';
+    else if (text.indexOf('*') != -1)
+      operation = '*';
+    else if (text.indexOf('/') != -1) operation = '/';
+
+    List<String> nums = text.split(operation);
+
+    num1 = double.parse(nums[0]);
+    num2 = double.parse(nums[1]);
+  }
+
+  void calculate() {
+    if (operation == '+')
+      this.sum();
+    else if (operation == '-')
+      this.sub();
+    else if (operation == '*')
+      this.mul();
+    else if (operation == '/') this.div();
   }
 
   double sum() {
