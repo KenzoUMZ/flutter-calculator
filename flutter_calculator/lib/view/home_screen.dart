@@ -16,7 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void _changeText(String t) {
     setState(() {
       _operation += t;
-      if (_operation.length == 5) {
+      if (_operation.length == 7) {
         _cleanDisplay();
       }
     });
@@ -49,14 +49,17 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             children: [
               Container(
-                  padding:
-                      const EdgeInsets.only(bottom: 50, top: 20,),
+                  padding: const EdgeInsets.only(
+                    bottom: 50,
+                    top: 20,
+                  ),
                   child: Text(
                     _operation,
                     style: displayStyle,
-                  textAlign: TextAlign.right,)),
+                    textAlign: TextAlign.right,
+                  )),
               Container(
-                  padding: const EdgeInsets.only( bottom: 50),
+                  padding: const EdgeInsets.only(bottom: 50),
                   child: Text(
                     _result,
                     style: displayStyle,
@@ -89,8 +92,27 @@ class _HomeScreenState extends State<HomeScreen> {
                   end: Alignment.topCenter,
                   colors: <Color>[Colors.deepPurple.shade900, Colors.purple])),
           child: Row(children: [
-            
-            Column(children: [FloatingActionButton(onPressed: ()=>{}),
+            Column(children: [
+              Container(
+                  padding:
+                      const EdgeInsets.only(top: 10, bottom: 10, right: 65),
+                  child: SizedBox(
+                      height: 60,
+                      width: 110,
+                      child: ElevatedButton(
+                        onPressed: () => {_cleanDisplay()},
+                        child: Text(
+                          'AC',
+                          style: keybStyle,
+                        ),
+                        style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all(Colors.purpleAccent),
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0),
+                            ))),
+                      ))),
               Row(
                 children: [
                   Container(
@@ -201,10 +223,45 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       )),
                 ],
-              )
+              ),
+              Row(children:[Container(
+                  padding: const EdgeInsets.only(top: 10, right: 10),
+                  child: SizedBox(
+                      height: 60,
+                      width: 110,
+                      child: ElevatedButton(
+                        onPressed: () => {_cleanDisplay()},
+                        child: Text(
+                          '0',
+                          style: keybStyle,
+                        ),
+                        style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all(buttonColor),
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0),
+                            ))),
+                      ))), Container(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: SizedBox(
+                            height: 60,
+                            width: 70,
+                            child: ElevatedButton(
+                              onPressed: () => {_changeText('.')},
+                              child: Text(','),
+                              style: ButtonStyle(
+                                  backgroundColor: MaterialStateProperty.all(
+                                      buttonColor),
+                                  shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                      RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(18.0),
+                                  ))),
+                            )))])
             ]),
             Container(
-                padding: const EdgeInsets.only(left: 20, top: 10),
+                padding: const EdgeInsets.only(left: 20, top: 10, right: 10),
                 child: Column(
                   children: [
                     SizedBox(
@@ -230,6 +287,38 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: ElevatedButton(
                               onPressed: () => {_changeText('-')},
                               child: Text('-'),
+                              style: ButtonStyle(
+                                  backgroundColor: MaterialStateProperty.all(
+                                      Colors.purpleAccent),
+                                  shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                      RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(18.0),
+                                  ))),
+                            ))),
+                    Container(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: SizedBox(
+                            width: 80,
+                            child: ElevatedButton(
+                              onPressed: () => {_changeText('x')},
+                              child: Text('x'),
+                              style: ButtonStyle(
+                                  backgroundColor: MaterialStateProperty.all(
+                                      Colors.purpleAccent),
+                                  shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                      RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(18.0),
+                                  ))),
+                            ))),
+                    Container(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: SizedBox(
+                            width: 80,
+                            child: ElevatedButton(
+                              onPressed: () => {_changeText('-')},
+                              child: Text('/'),
                               style: ButtonStyle(
                                   backgroundColor: MaterialStateProperty.all(
                                       Colors.purpleAccent),
