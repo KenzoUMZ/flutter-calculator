@@ -6,25 +6,47 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_calculator/controller/calculator.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_calculator/main.dart';
+import 'dart:developer';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  double num1 = 10;
+  double num2 = 20;
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+  test('exist()', () async {
+    Calculator calc = Calculator(num1, num2);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    expect(calc.exist(), true);
+  });
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+  test('sum()', () async {
+    Calculator calc = Calculator(num1, num2);
+    double result = calc.sum();
+
+    expect(result, num1 + num2);
+  });
+
+  test('sub()', () async {
+    Calculator calc = Calculator(num1, num2);
+    double result = calc.sub();
+
+    expect(result, num1 - num2);
+  });
+
+  test('div()', () async {
+    Calculator calc = Calculator(num1, num2);
+    double result = calc.div();
+
+    expect(result, num1 / num2);
+  });
+
+  test('mul()', () async {
+    Calculator calc = Calculator(num1, num2);
+    double result = calc.mul();
+
+    expect(result, num1 * num2);
   });
 }
