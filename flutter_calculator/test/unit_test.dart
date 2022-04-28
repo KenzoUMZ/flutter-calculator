@@ -13,39 +13,44 @@ import 'package:flutter_calculator/main.dart';
 import 'dart:developer';
 
 void main() {
-  double num1 = 10;
-  double num2 = 20;
+  double num1 = 10.0;
+  double num2 = 20.0;
 
   test('exist()', () async {
-    Calculator calc = Calculator(num1, num2);
+    Calculator calc = Calculator();
 
+    calc.text = num1.toString() + '+' + num2.toString();
     expect(calc.exist(), true);
   });
 
   test('sum()', () async {
-    Calculator calc = Calculator(num1, num2);
-    double result = calc.sum();
+    Calculator calc = Calculator();
+    calc.text = num1.toString() + '+' + num2.toString();
+    double result = calc.calculate();
 
     expect(result, num1 + num2);
   });
 
   test('sub()', () async {
-    Calculator calc = Calculator(num1, num2);
-    double result = calc.sub();
+    Calculator calc = Calculator();
+    calc.text = num1.toString() + '-' + num2.toString();
+    double result = calc.calculate();
 
     expect(result, num1 - num2);
   });
 
   test('div()', () async {
-    Calculator calc = Calculator(num1, num2);
-    double result = calc.div();
+    Calculator calc = Calculator();
+    calc.text = num1.toString() + '/' + num2.toString();
+    double result = calc.calculate();
 
     expect(result, num1 / num2);
   });
 
   test('mul()', () async {
-    Calculator calc = Calculator(num1, num2);
-    double result = calc.mul();
+    Calculator calc = Calculator();
+    calc.text = num1.toString() + '*' + num2.toString();
+    double result = calc.calculate();
 
     expect(result, num1 * num2);
   });
