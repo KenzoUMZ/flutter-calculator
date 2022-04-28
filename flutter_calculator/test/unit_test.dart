@@ -15,37 +15,42 @@ import 'dart:developer';
 void main() {
   double num1 = 10.0;
   double num2 = 20.0;
-  String text = num1.toString() + '+' + num2.toString();
 
   test('exist()', () async {
+    String text = num1.toString() + '+' + num2.toString();
+    print(text);
     Calculator calc = Calculator(text);
     expect(calc.exist(), true);
   });
 
   test('sum()', () async {
+    String text = num1.toString() + '+' + num2.toString();
     Calculator calc = Calculator(text);
-    double result = calc.sum();
+    double result = calc.calculate();
 
     expect(result, num1 + num2);
   });
 
   test('sub()', () async {
+    String text = num1.toString() + '-' + num2.toString();
     Calculator calc = Calculator(text);
-    double result = calc.sub();
+    double result = calc.calculate();
 
     expect(result, num1 - num2);
   });
 
   test('div()', () async {
+    String text = num1.toString() + '/' + num2.toString();
     Calculator calc = Calculator(text);
-    double result = calc.div();
-
+    double result = calc.calculate();
+    print(num1 / num2);
     expect(result, num1 / num2);
   });
 
   test('mul()', () async {
+    String text = num1.toString() + '*' + num2.toString();
     Calculator calc = Calculator(text);
-    double result = calc.mul();
+    double result = calc.calculate();
 
     expect(result, num1 * num2);
   });
