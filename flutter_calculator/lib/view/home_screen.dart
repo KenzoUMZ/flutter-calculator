@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_calculator/controller/calculator.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -36,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     TextStyle displayStyle =
-        GoogleFonts.montserrat(fontSize: 80, color: Colors.white);
+        GoogleFonts.montserrat(fontSize: 50, color: Colors.white);
     return Scaffold(
       body: Container(
           decoration: const BoxDecoration(
@@ -60,15 +61,23 @@ class _HomeScreenState extends State<HomeScreen> {
                         top: 20,
                       ),
                       child: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          child: Text(_operation, style: displayStyle)))),
+                          padding: const EdgeInsets.only(right: 10, top: 30),
+                          child: AutoSizeText(
+                            _operation,
+                            style: displayStyle,
+                            maxLines: 1,
+                            minFontSize: 20,
+                            textAlign: TextAlign.right,
+                          )))),
               SizedBox(
                   height: 150,
                   child: Container(
                       padding: const EdgeInsets.only(bottom: 50),
-                      child: Text(
+                      child: AutoSizeText(
                         _result,
                         style: displayStyle,
+                        maxLines: 1,
+                        minFontSize: 20,
                       ))),
               SizedBox(
                   child: Row(children: [
