@@ -1,22 +1,59 @@
+import 'package:flutter_calculator/controller/database.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:fluttermongo/model/database.dart';
 
 void main() {
-  test('Connect to remote database', () async {
+  test('connect()', () async {
     Database db = Database();
-    db.connect(test: false);
-  });
-
-  test('Connect to local database', () async {
-    Database db = Database();
-    db.connect(test: true);
+    db.connect();
   });
 
   test('create()', () async {
     Database db = Database();
 
-    var _json = <String, dynamic>{'date': '05/10/2022', 'operation': '2+3=4'};
+    var _json = <String, dynamic>{
+      '_id': 'idExample',
+      'date': '05/10/2022',
+      'operation': '2+3=4'
+    };
 
-    await db.create(_json, 'log');
+    bool res = await db.create(_json, 'log');
+    expect(res, true);
+  });
+
+  test('read()', () async {
+    Database db = Database();
+
+    var _json = <String, dynamic>{
+      '_id': 'idExample',
+      'date': '05/10/2022',
+      'operation': '2+3=4'
+    };
+    var _json_request = await db.read(_json, 'log');
+
+    expect(_json_request, _json);
+  });
+
+  test('update()', () async {
+    Database db = Database();
+
+    var _json = <String, dynamic>{
+      '_id': 'idExample',
+      'date': '05/10/2022',
+      'operation': '2+3=5'
+    };
+
+    var res = await db.update(_json, 'log');
+
+    expect(res, true);
+  });
+
+  test('delete()', () async {
+    Database db = Database();
+
+    var _json = <String, dynamic>{'_id': 'idExample'};
+
+    var res = await db.delete(_json, 'log');
+
+    expect(res, true);
   });
 }
