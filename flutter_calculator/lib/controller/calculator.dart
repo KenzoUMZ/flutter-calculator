@@ -1,3 +1,5 @@
+import 'package:flutter_calculator/controller/database.dart';
+
 class Calculator {
   String text = '';
   double num1 = 0;
@@ -6,8 +8,6 @@ class Calculator {
   // Operations methods
 
   double calculate() {
-    text = text;
-
     // definir operação
     if (text.indexOf('+') != -1)
       operation = '+';
@@ -17,21 +17,27 @@ class Calculator {
       operation = '*';
     else if (text.indexOf('/') != -1) operation = '/';
 
+    // separar a string em duas partes
     List<String> nums = text.split(operation);
 
     num1 = double.parse(nums[0]);
     num2 = double.parse(nums[1]);
 
+    double result;
     if (operation == '+')
-      return sum();
+      result = sum();
     else if (operation == '-')
-      return sub();
+      result = sub();
     else if (operation == '*')
-      return mul();
+      result = mul();
     else if (operation == '/')
-      return div();
+      result = div();
     else
-      return 0;
+      result = -1;
+
+    text = text + '=' + result.toString();
+    log();
+    return result;
   }
 
   void showValues() {
@@ -59,5 +65,22 @@ class Calculator {
 
   bool exist() {
     return true;
+  }
+
+  log() async {
+    var now = DateTime.now().day.toString() +
+        '/' +
+        DateTime.now().month.toString() +
+        '/' +
+        DateTime.now().year.toString() +
+        ' - ' +
+        DateTime.now().hour.toString() +
+        ':' +
+        DateTime.now().minute.toString() +
+        ':' +
+        DateTime.now().second.toString();
+
+    var log = <String, dynamic>{'date': now, 'operation': text};
+    return await Database().create(log, 'log');
   }
 }
