@@ -14,6 +14,20 @@ class _HomeScreenState extends State<HomeScreen> {
   String _operation = '';
   String _result = '';
   bool empty = false;
+  final backgroundGradient = <Color>[
+    const Color.fromRGBO(15, 15, 17, 1.0),
+    const Color.fromRGBO(19, 19, 23, 1.0),
+    const Color.fromRGBO(24, 24, 28, 1.0),
+    const Color.fromRGBO(28, 29, 33, 1.0),
+    const Color.fromRGBO(39, 39, 43, 1.0),
+  ];
+  final operationGradient = <Color>[
+    const Color.fromRGBO(64, 158, 248, 1.0),
+    const Color.fromRGBO(34, 201, 252, 1.0),
+    const Color.fromRGBO(51, 236, 223, 1.0),
+    const Color.fromRGBO(40, 252, 171, 1.0),
+    const Color.fromRGBO(39, 248, 125, 1.0),
+  ];
 
   void _changeText(String t) {
     setState(() {
@@ -40,17 +54,13 @@ class _HomeScreenState extends State<HomeScreen> {
         GoogleFonts.montserrat(fontSize: 50, color: Colors.white);
     return Scaffold(
       body: Container(
-          decoration: const BoxDecoration(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
               gradient: LinearGradient(
                   begin: Alignment.bottomCenter,
                   end: Alignment.topCenter,
-                  colors: <Color>[
-                Color.fromRGBO(15, 15, 17, 1.0),
-                Color.fromRGBO(19, 19, 23, 1.0),
-                Color.fromRGBO(24, 24, 28, 1.0),
-                Color.fromRGBO(28, 29, 33, 1.0),
-                Color.fromRGBO(39, 39, 43, 1.0),
-              ])),
+                  colors: backgroundGradient)),
           child: Column(
             children: [
               SizedBox(
@@ -79,8 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         maxLines: 1,
                         minFontSize: 20,
                       ))),
-              SizedBox(
-                  child: Row(children: [
+              Row(children: [
                 Column(children: [
                   Row(
                     children: [
@@ -94,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ]),
                 operationPanel()
-              ]))
+              ])
             ],
           )),
     );
