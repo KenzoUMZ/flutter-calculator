@@ -31,9 +31,22 @@ clique em "Finish"
 ## 2 - Visual Studio Code
 ### I - Faça o download do Visual Studio Code em: https://code.visualstudio.com/docs?dv=win
 ### II - Uma vez baixado, execute o arquivo ".exe"
-### obs: Por padrão o VSCode é instalado no diretório {C:\Users\{Username}\AppData\Local\Programs\Microsoft VS Code}
+obs: Por padrão o VSCode é instalado no diretório {C:\Users\{Username}\AppData\Local\Programs\Microsoft VS Code}
 
+## 3 - Extensões do VS Code
+### I - Abra o menu de extensões
+![image](https://user-images.githubusercontent.com/49520709/174875596-b424f97f-1b8d-4264-af79-97fc2230b850.png)
+### II - Pesquise por "Flutter" na caixa de pesquisa para instalar a extensão e clique em "Install"
+![image](https://user-images.githubusercontent.com/49520709/174875789-4ad912e3-0669-4acf-abcb-c9df2dc7d26e.png)
+obs: Por padrão a extensão "Dart" (necessária para execução dos projetos) é instalada de forma conjunta com a do "Flutter",
+porém certifique-se de que a mesma foi de fato instalada.
 
+## 4 - Flutter SDK
+### I - Acesse https://docs.flutter.dev/get-started/install
+### II - Escolha o sistema operacional desejado:
+![image](https://user-images.githubusercontent.com/49520709/174877004-21bcb256-d254-4e33-a7ea-c66d4191fb8c.png)
+### III - Role a página abaixo até encontrar o botão "Get Flutter SDK"
+![image](https://user-images.githubusercontent.com/49520709/174877251-57cd90e7-b34c-4aeb-8868-0d195be1706d.png)
 
 ## Como rodar
 ### 1. Clonar o repo
