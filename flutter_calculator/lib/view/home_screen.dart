@@ -181,6 +181,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 vertical: buttonDistY, horizontal: buttonDistX),
             child: TextButton(
                 onPressed: () {
+                  // TODO: mostrar operacao
                   calculator.text = _operation;
                   _changeResult(calculator.calculate().toString());
                 },
@@ -230,9 +231,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   // _changeResult(calculator.calculate().toString());
                   _deleteText();
                 },
-                child: Text(
-                  '<',
-                  style: keyboardStyle,
+                child: Icon(
+                  Icons.backspace_outlined,
+                  color: Colors.white,
+                  size: 30,
                 )))
       ],
     );
