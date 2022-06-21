@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_calculator/controller/calculator.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -13,12 +14,24 @@ class _HomeScreenState extends State<HomeScreen> {
   String _operation = '';
   String _result = '';
   bool empty = false;
+  final backgroundGradient = <Color>[
+    const Color.fromRGBO(15, 15, 17, 1.0),
+    const Color.fromRGBO(19, 19, 23, 1.0),
+    const Color.fromRGBO(24, 24, 28, 1.0),
+    const Color.fromRGBO(28, 29, 33, 1.0),
+    const Color.fromRGBO(39, 39, 43, 1.0),
+  ];
+  final operationGradient = <Color>[
+    const Color.fromRGBO(64, 158, 248, 1.0),
+    const Color.fromRGBO(34, 201, 252, 1.0),
+    const Color.fromRGBO(51, 236, 223, 1.0),
+    const Color.fromRGBO(40, 252, 171, 1.0),
+    const Color.fromRGBO(39, 248, 125, 1.0),
+  ];
+
   void _changeText(String t) {
     setState(() {
       _operation += t;
-      if (_operation.length == 7) {
-        _cleanDisplay();
-      }
     });
   }
 
@@ -38,320 +51,315 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     TextStyle displayStyle =
-        GoogleFonts.montserrat(fontSize: 80, color: Colors.white);
+        GoogleFonts.montserrat(fontSize: 50, color: Colors.white);
     return Scaffold(
       body: Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
               gradient: LinearGradient(
                   begin: Alignment.bottomCenter,
                   end: Alignment.topCenter,
-                  colors: <Color>[Colors.deepPurple, Colors.purple.shade700])),
+                  colors: backgroundGradient)),
           child: Column(
             children: [
-              Container(
-                  padding: const EdgeInsets.only(
-                    bottom: 50,
-                    top: 20,
+              SizedBox(
+                  height: 150,
+                  child: Container(
+                      padding: const EdgeInsets.only(
+                        bottom: 50,
+                        top: 20,
+                      ),
+                      child: Container(
+                          padding: const EdgeInsets.only(right: 10, top: 30),
+                          child: AutoSizeText(
+                            _operation,
+                            style: displayStyle,
+                            maxLines: 1,
+                            minFontSize: 20,
+                            textAlign: TextAlign.right,
+                          )))),
+              SizedBox(
+                  height: 150,
+                  child: Container(
+                      padding: const EdgeInsets.only(bottom: 50),
+                      child: AutoSizeText(
+                        _result,
+                        style: displayStyle,
+                        maxLines: 1,
+                        minFontSize: 20,
+                      ))),
+              Row(children: [
+                Column(children: [
+                  Row(
+                    children: [
+                      topButtons(),
+                    ],
                   ),
-                  child: Text(
-                    _operation,
-                    style: displayStyle,
-                    textAlign: TextAlign.right,
-                  )),
-              Container(
-                  padding: const EdgeInsets.only(bottom: 50),
-                  child: Text(
-                    _result,
-                    style: displayStyle,
-                  )),
-              numpadBuilder()
+                  Row(
+                    children: [
+                      numPad(),
+                    ],
+                  ),
+                ]),
+                operationPanel()
+              ])
             ],
           )),
     );
   }
 
-  Container numpadBuilder() {
-    double buttonDistX = 10;
-    double buttonDistY = 10;
-    Color buttonColor = Colors.deepPurple;
-    Color buttonTextColor = Colors.white;
-    TextStyle keybStyle =
-        GoogleFonts.baloo2(color: buttonTextColor, fontSize: 20);
+  Widget operationPanel() {
+    double buttonDistX = 15;
+    double buttonDistY = 12;
+    Color buttonTextColor = Colors.black;
+    TextStyle keyboardStyle = GoogleFonts.roboto(
+        color: buttonTextColor, fontSize: 40, fontWeight: FontWeight.w300);
     Calculator calculator = Calculator();
-    GoogleFonts.baloo2(color: buttonTextColor, fontSize: 20);
+
     return Container(
-        child: Expanded(
-      child: Container(
-          decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(color: Colors.deepPurple.shade900, blurRadius: 80)
-              ],
-              borderRadius: BorderRadius.circular(20),
-              gradient: LinearGradient(
-                  begin: Alignment.bottomCenter,
-                  end: Alignment.topCenter,
-                  colors: <Color>[Colors.deepPurple.shade900, Colors.purple])),
-          child: Row(children: [
-            Column(children: [
-              Container(
-                  padding:
-                      const EdgeInsets.only(top: 10, bottom: 10, right: 65),
-                  child: SizedBox(
-                      height: 60,
-                      width: 110,
-                      child: ElevatedButton(
-                        onPressed: () => {_cleanDisplay()},
-                        child: Text(
-                          'AC',
-                          style: keybStyle,
-                        ),
-                        style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all(Colors.purpleAccent),
-                            shape: MaterialStateProperty.all<
-                                RoundedRectangleBorder>(RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18.0),
-                            ))),
-                      ))),
-              Row(
-                children: [
-                  Container(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: buttonDistX, vertical: buttonDistY),
-                      child: FloatingActionButton(
-                        backgroundColor: buttonColor,
-                        onPressed: () => {_changeText('7')},
-                        child: Text(
-                          '7',
-                          style: keybStyle,
-                        ),
-                      )),
-                  Container(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: buttonDistX, vertical: buttonDistY),
-                      child: FloatingActionButton(
-                        backgroundColor: buttonColor,
-                        onPressed: () => {_changeText('8')},
-                        child: Text(
-                          '8',
-                          style: keybStyle,
-                        ),
-                      )),
-                  Container(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: buttonDistX, vertical: buttonDistY),
-                      child: FloatingActionButton(
-                        backgroundColor: buttonColor,
-                        onPressed: () => {_changeText('9')},
-                        child: Text(
-                          '9',
-                          style: keybStyle,
-                        ),
-                      )),
-                ],
-              ),
-              Row(
-                children: [
-                  Container(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: buttonDistX, vertical: buttonDistY),
-                      child: FloatingActionButton(
-                        backgroundColor: buttonColor,
-                        onPressed: () => {_changeText('4')},
-                        child: Text(
-                          '4',
-                          style: keybStyle,
-                        ),
-                      )),
-                  Container(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: buttonDistX, vertical: buttonDistY),
-                      child: FloatingActionButton(
-                        backgroundColor: buttonColor,
-                        onPressed: () => {_changeText('5')},
-                        child: Text(
-                          '5',
-                          style: keybStyle,
-                        ),
-                      )),
-                  Container(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: buttonDistX, vertical: buttonDistY),
-                      child: FloatingActionButton(
-                        backgroundColor: buttonColor,
-                        onPressed: () => {_changeText('6')},
-                        child: Text(
-                          '6',
-                          style: keybStyle,
-                        ),
-                      )),
-                ],
-              ),
-              Row(
-                children: [
-                  Container(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: buttonDistX, vertical: buttonDistY),
-                      child: FloatingActionButton(
-                        backgroundColor: buttonColor,
-                        onPressed: () => {_changeText('1')},
-                        child: Text(
-                          '1',
-                          style: keybStyle,
-                        ),
-                      )),
-                  Container(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: buttonDistX, vertical: buttonDistY),
-                      child: FloatingActionButton(
-                        backgroundColor: buttonColor,
-                        onPressed: () => {_changeText('2')},
-                        child: Text(
-                          '2',
-                          style: keybStyle,
-                        ),
-                      )),
-                  Container(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: buttonDistX, vertical: buttonDistY),
-                      child: FloatingActionButton(
-                        backgroundColor: buttonColor,
-                        onPressed: () => {_changeText('3')},
-                        child: Text(
-                          '3',
-                          style: keybStyle,
-                        ),
-                      )),
-                ],
-              ),
-              Row(children: [
-                Container(
-                    padding: const EdgeInsets.only(top: 10, right: 10),
-                    child: SizedBox(
-                        height: 60,
-                        width: 110,
-                        child: ElevatedButton(
-                          onPressed: () => {_changeText('0')},
-                          child: Text(
-                            '0',
-                            style: keybStyle,
-                          ),
-                          style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStateProperty.all(buttonColor),
-                              shape: MaterialStateProperty.all<
-                                      RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18.0),
-                              ))),
-                        ))),
-                Container(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: SizedBox(
-                        height: 60,
-                        width: 70,
-                        child: ElevatedButton(
-                          onPressed: () => {_changeText('.')},
-                          child: Text(','),
-                          style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStateProperty.all(buttonColor),
-                              shape: MaterialStateProperty.all<
-                                      RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18.0),
-                              ))),
-                        )))
-              ])
-            ]),
+      padding: EdgeInsets.only(bottom: buttonDistY),
+      decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+          gradient: LinearGradient(
+              begin: Alignment.bottomRight,
+              end: Alignment.topLeft,
+              colors: <Color>[
+                Color.fromRGBO(64, 158, 248, 1.0),
+                Color.fromRGBO(34, 201, 252, 1.0),
+                Color.fromRGBO(51, 236, 223, 1.0),
+                Color.fromRGBO(40, 252, 171, 1.0),
+                Color.fromRGBO(39, 248, 125, 1.0),
+              ])),
+      child: Column(children: [
+        Container(
+            padding: EdgeInsets.symmetric(
+                vertical: buttonDistY, horizontal: buttonDistX),
+            child: TextButton(
+                onPressed: () => _changeText('/'),
+                child: Text(
+                  '÷',
+                  style: keyboardStyle,
+                ))),
+        Container(
+            padding: EdgeInsets.symmetric(
+                vertical: buttonDistY, horizontal: buttonDistX),
+            child: TextButton(
+                onPressed: () => _changeText('*'),
+                child: Text(
+                  '×',
+                  style: keyboardStyle,
+                ))),
+        Container(
+            padding: EdgeInsets.symmetric(
+                vertical: buttonDistY, horizontal: buttonDistX),
+            child: TextButton(
+                onPressed: () => _changeText('-'),
+                child: Text(
+                  '﹣',
+                  style: keyboardStyle,
+                ))),
+        Container(
+            padding: EdgeInsets.symmetric(
+                vertical: buttonDistY, horizontal: buttonDistX),
+            child: TextButton(
+                onPressed: () => _changeText('+'),
+                child: Text(
+                  '+',
+                  style: keyboardStyle,
+                ))),
+        Container(
+            padding: EdgeInsets.symmetric(
+                vertical: buttonDistY, horizontal: buttonDistX),
+            child: TextButton(
+                onPressed: () {
+                  calculator.text = _operation;
+                  _changeResult(calculator.calculate().toString());
+                },
+                child: Text(
+                  '=',
+                  style: keyboardStyle,
+                )))
+      ]),
+    );
+  }
+
+  Widget topButtons() {
+    double buttonDistX = 15;
+    double buttonDistY = 15;
+    Color buttonTextColor = Colors.white;
+    TextStyle keyboardStyle = GoogleFonts.roboto(
+        color: buttonTextColor, fontSize: 40, fontWeight: FontWeight.w100);
+
+    return Row(
+      children: [
+        Container(
+            padding: EdgeInsets.symmetric(
+                vertical: buttonDistY, horizontal: buttonDistX),
+            child: TextButton(
+                onPressed: () => _cleanDisplay(),
+                child: Text(
+                  'AC',
+                  style: keyboardStyle,
+                ))),
+        Container(
+            padding: EdgeInsets.symmetric(
+                vertical: buttonDistY, horizontal: buttonDistX),
+            child: TextButton(
+                onPressed: () => _cleanDisplay(),
+                child: Text(
+                  '±',
+                  style: keyboardStyle,
+                ))),
+        Container(
+            padding: EdgeInsets.symmetric(
+                vertical: buttonDistY, horizontal: buttonDistX),
+            child: TextButton(
+                onPressed: () => _cleanDisplay(),
+                child: Text(
+                  '%',
+                  style: keyboardStyle,
+                )))
+      ],
+    );
+  }
+
+  Widget numPad() {
+    double buttonDistX = 15;
+    double buttonDistY = 15;
+    Color buttonTextColor = Colors.white;
+    TextStyle keyboardStyle = GoogleFonts.roboto(
+        color: buttonTextColor, fontSize: 40, fontWeight: FontWeight.w100);
+
+    List<String> numbers = [
+      '7',
+      '8',
+      '9',
+      '4',
+      '5',
+      '6',
+      '1',
+      '2',
+      '3',
+      '0',
+      ','
+    ];
+    return Column(
+      children: [
+        Row(
+          children: [
             Container(
-                padding: const EdgeInsets.only(left: 20, top: 10, right: 10),
-                child: Column(
-                  children: [
-                    SizedBox(
-                        height: 150,
-                        width: 80,
-                        child: ElevatedButton(
-                          onPressed: () => {_changeText('+')},
-                          child: Text('+'),
-                          style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(
-                                  Colors.purpleAccent),
-                              shape: MaterialStateProperty.all<
-                                      RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18.0),
-                              ))),
-                        )),
-                    Container(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: SizedBox(
-                            height: 80,
-                            width: 80,
-                            child: ElevatedButton(
-                              onPressed: () => {_changeText('-')},
-                              child: Text('-'),
-                              style: ButtonStyle(
-                                  backgroundColor: MaterialStateProperty.all(
-                                      Colors.purpleAccent),
-                                  shape: MaterialStateProperty.all<
-                                          RoundedRectangleBorder>(
-                                      RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(18.0),
-                                  ))),
-                            ))),
-                    Container(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: SizedBox(
-                            width: 80,
-                            child: ElevatedButton(
-                              onPressed: () => {_changeText('*')},
-                              child: Text('X'),
-                              style: ButtonStyle(
-                                  backgroundColor: MaterialStateProperty.all(
-                                      Colors.purpleAccent),
-                                  shape: MaterialStateProperty.all<
-                                          RoundedRectangleBorder>(
-                                      RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(18.0),
-                                  ))),
-                            ))),
-                    Container(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: SizedBox(
-                            width: 80,
-                            child: ElevatedButton(
-                              onPressed: () => {_changeText('/')},
-                              child: Text('/'),
-                              style: ButtonStyle(
-                                  backgroundColor: MaterialStateProperty.all(
-                                      Colors.purpleAccent),
-                                  shape: MaterialStateProperty.all<
-                                          RoundedRectangleBorder>(
-                                      RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(18.0),
-                                  ))),
-                            ))),
-                    SizedBox(
-                        width: 80,
-                        child: ElevatedButton(
-                          onPressed: () => {
-                            calculator.text = _operation,
-                            _changeResult(calculator.calculate().toString()),
-                          },
-                          child: Text('='),
-                          style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStateProperty.all(Colors.purple),
-                              shape: MaterialStateProperty.all<
-                                      RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18.0),
-                              ))),
-                        ))
-                  ],
-                ))
-          ])),
-    ));
+                padding: EdgeInsets.symmetric(
+                    vertical: buttonDistY, horizontal: buttonDistX),
+                child: TextButton(
+                    onPressed: () => _changeText(numbers[0]),
+                    child: Text(
+                      numbers[0],
+                      style: keyboardStyle,
+                    ))),
+            Container(
+                padding: EdgeInsets.symmetric(
+                    vertical: buttonDistY, horizontal: buttonDistX),
+                child: TextButton(
+                    onPressed: () => _changeText(numbers[1]),
+                    child: Text(
+                      numbers[1],
+                      style: keyboardStyle,
+                    ))),
+            Container(
+                padding: EdgeInsets.symmetric(
+                    vertical: buttonDistY, horizontal: buttonDistX),
+                child: TextButton(
+                    onPressed: () => _changeText(numbers[2]),
+                    child: Text(
+                      numbers[2],
+                      style: keyboardStyle,
+                    )))
+          ],
+        ),
+        Row(
+          children: [
+            Container(
+                padding: EdgeInsets.symmetric(
+                    vertical: buttonDistY, horizontal: buttonDistX),
+                child: TextButton(
+                    onPressed: () => _changeText(numbers[3]),
+                    child: Text(
+                      numbers[3],
+                      style: keyboardStyle,
+                    ))),
+            Container(
+                padding: EdgeInsets.symmetric(
+                    vertical: buttonDistY, horizontal: buttonDistX),
+                child: TextButton(
+                    onPressed: () => _changeText(numbers[4]),
+                    child: Text(
+                      numbers[4],
+                      style: keyboardStyle,
+                    ))),
+            Container(
+                padding: EdgeInsets.symmetric(
+                    vertical: buttonDistY, horizontal: buttonDistX),
+                child: TextButton(
+                    onPressed: () => _changeText(numbers[5]),
+                    child: Text(
+                      numbers[5],
+                      style: keyboardStyle,
+                    )))
+          ],
+        ),
+        Row(
+          children: [
+            Container(
+                padding: EdgeInsets.symmetric(
+                    vertical: buttonDistY, horizontal: buttonDistX),
+                child: TextButton(
+                    onPressed: () => _changeText(numbers[6]),
+                    child: Text(
+                      numbers[6],
+                      style: keyboardStyle,
+                    ))),
+            Container(
+                padding: EdgeInsets.symmetric(
+                    vertical: buttonDistY, horizontal: buttonDistX),
+                child: TextButton(
+                    onPressed: () => _changeText(numbers[7]),
+                    child: Text(
+                      numbers[7],
+                      style: keyboardStyle,
+                    ))),
+            Container(
+                padding: EdgeInsets.symmetric(
+                    vertical: buttonDistY, horizontal: buttonDistX),
+                child: TextButton(
+                    onPressed: () => _changeText(numbers[8]),
+                    child: Text(
+                      numbers[8],
+                      style: keyboardStyle,
+                    ))),
+          ],
+        ),
+        Row(
+          children: [
+            Container(
+                padding: EdgeInsets.only(top: buttonDistY, right: 120),
+                child: TextButton(
+                    onPressed: () => _changeText(numbers[9]),
+                    child: Text(
+                      numbers[9],
+                      style: keyboardStyle,
+                    ))),
+            Container(
+                padding: EdgeInsets.only(top: buttonDistY),
+                child: TextButton(
+                    onPressed: () => _changeText(numbers[10]),
+                    child: Text(
+                      numbers[10],
+                      style: keyboardStyle,
+                    )))
+          ],
+        )
+      ],
+    );
   }
 }
