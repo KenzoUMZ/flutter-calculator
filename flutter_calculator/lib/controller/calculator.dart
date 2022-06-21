@@ -5,7 +5,7 @@ class Calculator {
   String operation = '';
   // Operations methods
 
-  double calculate() {
+  calculate() {
     // definir operação
     if (text.indexOf('+') != -1)
       operation = '+';
@@ -16,6 +16,7 @@ class Calculator {
     else if (text.indexOf('/') != -1) operation = '/';
 
     // separar a string em duas partes
+    text = text.replaceAll(',', '.');
     List<String> nums = text.split(operation);
 
     num1 = double.parse(nums[0]);
@@ -33,9 +34,9 @@ class Calculator {
     else
       result = -1;
 
-    text = text + '=' + result.toString();
+    text = text + '=' + result.toString().replaceAll('.', ',');
     log();
-    return result;
+    return result.toString().replaceAll('.', ',');
   }
 
   void showValues() {
@@ -79,5 +80,6 @@ class Calculator {
         DateTime.now().second.toString();
 
     var log = <String, dynamic>{'date': now, 'operation': text};
+    print(log);
   }
 }
