@@ -25,13 +25,49 @@ void main() {
 
   test('sum()', () async {
     Calculator calc = Calculator();
+    calc.num1 = num1;
+    calc.num2 = num2;
+    double result = calc.sum();
+
+    expect(result, num1 + num2);
+  });
+
+  test('sub()', () async {
+    Calculator calc = Calculator();
+    calc.num1 = num1;
+    calc.num2 = num2;
+    double result = calc.sub();
+
+    expect(result, num1 - num2);
+  });
+
+  test('div()', () async {
+    Calculator calc = Calculator();
+    calc.num1 = num1;
+    calc.num2 = num2;
+    double result = calc.div();
+
+    expect(result, num1 / num2);
+  });
+
+  test('mul()', () async {
+    Calculator calc = Calculator();
+    calc.num1 = num1;
+    calc.num2 = num2;
+    double result = calc.mul();
+
+    expect(result, num1 * num2);
+  });
+
+  test('calculate() - sum', () async {
+    Calculator calc = Calculator();
     calc.text = num1.toString() + '+' + num2.toString();
     double result = calc.calculate();
 
     expect(result, num1 + num2);
   });
 
-  test('sub()', () async {
+  test('calculate() - sub', () async {
     Calculator calc = Calculator();
     calc.text = num1.toString() + '-' + num2.toString();
     double result = calc.calculate();
@@ -39,7 +75,7 @@ void main() {
     expect(result, num1 - num2);
   });
 
-  test('div()', () async {
+  test('calculate() - div', () async {
     Calculator calc = Calculator();
     calc.text = num1.toString() + '/' + num2.toString();
     double result = calc.calculate();
@@ -47,11 +83,45 @@ void main() {
     expect(result, num1 / num2);
   });
 
-  test('mul()', () async {
+  test('calculate() - mul', () async {
     Calculator calc = Calculator();
     calc.text = num1.toString() + '*' + num2.toString();
     double result = calc.calculate();
 
     expect(result, num1 * num2);
+  });
+
+  test('log()', () async {
+    Calculator calc = Calculator();
+    calc.text = num1.toString() + '/' + num2.toString();
+    double result = calc.calculate();
+    var _log = calc.log();
+
+    expect(_log, true);
+  });
+
+  test('zero div', () async {
+    Calculator calc = Calculator();
+    num2 = 0;
+    calc.text = num1.toString() + '/' + num2.toString();
+    double result = calc.calculate();
+
+    expect(result, num1 / num2);
+  });
+
+  test('showValues()', () async {
+    Calculator calc = Calculator();
+    calc.text = num1.toString() + '/' + num2.toString();
+    double result = calc.calculate();
+    calc.showValues();
+  });
+
+  test('deleteCharacter()', () async {
+    Calculator calc = Calculator();
+    calc.text = num1.toString() + '/' + num2.toString();
+    double result = calc.calculate();
+    print(calc.text);
+    calc.deleteCharacter();
+    print(calc.text);
   });
 }
