@@ -49,7 +49,31 @@ porém certifique-se de que a mesma foi de fato instalada.
 ![image](https://user-images.githubusercontent.com/49520709/174877251-57cd90e7-b34c-4aeb-8868-0d195be1706d.png)
 ### IV - Tendo baixado o arquivo, copie-o para um diretório seguro para evitar a deleção acidental do SDK.
 obs: Recomendamos que instale na pasta "User" do seu sistema operacional.
+```bash
+# Por exemplo
+C:\Users\nome\flutter
+```
 ### V - Descompacte a pasta no diretório escolhido.
+### VI - Adicione a pasta flutter\bin no seu path
+```bash
+# Por exemplo
+C:\Users\nome\flutter\bin
+```
+### VII - Verifique em seu terminal com flutter doctor
+```bash
+>flutter doctor
+Doctor summary (to see all details, run flutter doctor -v):
+[√] Flutter (Channel stable, 3.0.0, on Microsoft Windows [Version 10.0.19044.1766], locale en-US)
+[√] Android toolchain - develop for Android devices (Android SDK version 32.1.0-rc1)
+[√] Chrome - develop for the web
+[√] Visual Studio - develop for Windows (Visual Studio Community 2022 17.2.0)
+[√] Android Studio (version 2021.2)
+[√] VS Code (version 1.68.1)
+[√] Connected device (4 available)
+[√] HTTP Host Availability
+
+• No issues found!
+```
 
 
 ## Como rodar
