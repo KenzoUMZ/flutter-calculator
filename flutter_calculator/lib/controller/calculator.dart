@@ -5,7 +5,7 @@ class Calculator {
   String operation = '';
   // Operations methods
 
-  calculate() {
+  double calculate() {
     // definir operação
     if (text.indexOf('+') != -1)
       operation = '+';
@@ -36,14 +36,14 @@ class Calculator {
 
     text = text + '=' + result.toString().replaceAll('.', ',');
     log();
-    return result.toString().replaceAll('.', ',');
+    return result;
   }
 
   void showValues() {
-    print('num1:' + num1.toString());
-    print('num2:' + num2.toString());
-    print('operation:' + operation);
-    print('text:' + text);
+    print('num1: ' + num1.toString());
+    print('num2: ' + num2.toString());
+    print('operation: ' + operation);
+    print('text: ' + text);
   }
 
   double sum() {
@@ -66,7 +66,7 @@ class Calculator {
     return true;
   }
 
-  log() async {
+  log() {
     var now = DateTime.now().day.toString() +
         '/' +
         DateTime.now().month.toString() +
@@ -80,6 +80,7 @@ class Calculator {
         DateTime.now().second.toString();
 
     var log = <String, dynamic>{'date': now, 'operation': text};
-    print(log);
+    // print(log);
+    return true;
   }
 }
