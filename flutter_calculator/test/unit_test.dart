@@ -115,4 +115,13 @@ void main() {
     double result = calc.calculate();
     calc.showValues();
   });
+
+  test('deleteCharacter()', () async {
+    Calculator calc = Calculator();
+    calc.text = num1.toString() + '/' + num2.toString();
+    double result = calc.calculate();
+    print(calc.text);
+    calc.deleteCharacter();
+    print(calc.text);
+  });
 }
