@@ -47,6 +47,10 @@ porém certifique-se de que a mesma foi de fato instalada.
 ![image](https://user-images.githubusercontent.com/49520709/174877004-21bcb256-d254-4e33-a7ea-c66d4191fb8c.png)
 ### III - Role a página abaixo até encontrar o botão "Get Flutter SDK"
 ![image](https://user-images.githubusercontent.com/49520709/174877251-57cd90e7-b34c-4aeb-8868-0d195be1706d.png)
+### IV - Tendo baixado o arquivo, copie-o para um diretório seguro para evitar a deleção acidental do SDK.
+obs: Recomendamos que instale na pasta "User" do seu sistema operacional.
+### V - Descompacte a pasta no diretório escolhido.
+
 
 ## Como rodar
 ### 1. Clonar o repo
