@@ -35,6 +35,14 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  void _deleteText() {
+    setState(() {
+      try {
+        _operation = _operation.substring(0, _operation.length - 1);
+      } catch (e) {}
+    });
+  }
+
   void _cleanDisplay() {
     setState(() {
       _operation = '';
@@ -215,9 +223,15 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: EdgeInsets.symmetric(
                 vertical: buttonDistY, horizontal: buttonDistX),
             child: TextButton(
-                onPressed: () => _cleanDisplay(),
+                onPressed: () {
+                  // TODO
+                  //calc.delete()
+                  // calculator.text = _operation;
+                  // _changeResult(calculator.calculate().toString());
+                  _deleteText();
+                },
                 child: Text(
-                  '%',
+                  '<',
                   style: keyboardStyle,
                 )))
       ],

@@ -83,4 +83,9 @@ class Calculator {
     // print(log);
     return true;
   }
+
+  deleteCharacter() {
+    // delete last character of text
+    text = text.substring(0, text.length - 1);
+  }
 }
