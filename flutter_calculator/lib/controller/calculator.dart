@@ -1,5 +1,3 @@
-import 'package:flutter_calculator/controller/database.dart';
-
 class Calculator {
   String text = '';
   double num1 = 0;
@@ -81,6 +79,5 @@ class Calculator {
         DateTime.now().second.toString();
 
     var log = <String, dynamic>{'date': now, 'operation': text};
-    return await Database().create(log, 'log');
   }
 }
