@@ -57,7 +57,7 @@ C:\Users\nome\flutter
 ### VI - Adicione a pasta flutter\bin no seu path
 ```bash
 # Por exemplo
-C:\Users\nome\flutter\bin
+set PATH=%PATH%;C:\Users\nome\flutter\bin\
 ```
 ### VII - Verifique em seu terminal com flutter doctor
 ```bash
